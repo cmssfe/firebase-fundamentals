@@ -1,0 +1,20 @@
+{
+  "name": "firebase-fundamentals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmssfe/firebase-fundamentals.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmssfe/firebase-fundamentals/issues"
+  },
+  "homepage": "https://github.com/cmssfe/firebase-fundamentals#readme"
+}
