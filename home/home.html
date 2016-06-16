@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-header">
+            <h1>
+                <span>Tweeter</span>
+                <div id="user-select" style="float: right;">
+                    <div class="input-group">
+                        <select class="form-control" class="users" ng-model="$ctrl.currentUser" ng-options="user.name as user for user in $ctrl.users"></select>
+                    </div>
+                </div>
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="user-select"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="user-tweet-box" class="jumbotron">
+            <h3>
+                {{$ctrl.user.name}} <small style="float:right;">Tweet Count: {{$ctrl.user.tweetCount}}</small></h3>
+            <form>
+                <div class="form-group">
+                    <textarea id="tweet-box" class="form-control" placeholder="Tweet as {{$ctrl.user.name}}"></textarea>
+                </div>
+                <div class="form-group">
+                    <button id="tweet-button" class="btn btn-primary" disabled="disabled">Tweet</button>
+                    <span id="tweet-length" style="margin-left: 1rem; color: gray;">140</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div id="user-timeline" style="padding: 2rem 0;">
+            <h3>Timeline</h3>
+            <ul class="list-group">
+
+                <li class="list-group-item" ng-repeat="item in $ctrl.timeline">
+                    <h4 class="list-group-item-heading">
+                        {{item.user.name}}
+                        <small>@{{item.user.username}}</small>
+
+                        <button ng-if="item.user.key ===$ctrl.userKey" class="btn btn-danger remove-tweet" style="float: right;">X</button>
+
+                    </h4>
+                    <p class="list-group-item-text">
+                        {{item.text}}
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div id="user-following" style="padding: 2rem 0;">
+            <h3>Following</h3>
+            <ul class="list-group">
+          
+                    <li class="list-group-item" ng-repeat="following in $ctrl.following">
+                        <h4 class="list-group-item-heading">
+                            {{following.name}} <small>@ {{following.username}}</small></h4>
+                    </li>
+            </ul>
+        </div>
+
+    </div>
+</div>

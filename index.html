@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页-碎碎念</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="nabar-header">
+                    <a href="#" class="navbar-brand">碎碎念</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#/home">首页</a></li>
+                    <li><a href="#/square">广场</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="logout"><a href="#/settings">设置</a></li>
+                    <li id="login"><a href="#/login">登录</a></li>
+                    <li id="logout"><a href="#/logout">注销</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div ng-view></div>
+    </div>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="libs/angular/angular.min.js"></script>
+    <script type="text/javascript" src="libs/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="libs/firebase/firebase.js"></script>
+    <script type="text/javascript" src="libs/angularfire-1.1.4/angularfire.min.js"></script>
+    <script src="app.js"></script>
+    <script src="app.config.js"></script>
+
+    <script src="/home/home.js"></script>
+    <script src="/square/square.js"></script>
+
+    <script src="/login/login.js"></script>
+    <script src="/logout/logout.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<div class="jumbotron">
+    <h3>碎碎念</h3>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur ad illum, ex aut earum laudantium expedita, perspiciatis
+        delectus a ipsam consectetur rerum itaque repellat, assumenda enim quasi culpa ab accusantium.
+    </p>
+    <p>
+        <a class="btn btn-primary btn-lg" href="#">了解更多</a>
+    </p>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div style="padding: 2rem 0;">
+            <h3>All Users</h3>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in $ctrl.users">
+                    <h4 class="list-group-item-heading">
+                        {{user.name}}
+                        <small>@{{user.username}}</small>
+                    </h4>
+                    <p class="list-group-item-text">
+                        {{user.tweetCount}}
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+{{$ctrl.tweets | json}}
+    <div class="col-xs-12 col-md-6">
+        <div style="padding: 2rem 0;">
+            <h3>All Tweets</h3>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="tweet in $ctrl.tweets">
+                    <h4 class="list-group-item-heading">
+                        {{tweet.name}}
+                        <small>@{{user.username}}</small>
+                    </h4>
+                    <p class="list-group-item-text">
+                        {{user.tweetCount}}
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

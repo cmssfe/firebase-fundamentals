@@ -1,0 +1,33 @@
+{
+    "rules": {
+        ".read": true,
+        ".write": true,
+        "settings": {
+            "messageLength": {
+                ".validate": "newData.isNumber()"
+            }
+        },
+        "userObjects": {
+            "tweets": {
+                "$userKey": {
+                    "$tweetKey": {
+                        "text": {
+                            ".validate": "newData.isString() && newData.val().length<=root.child('settings').child('messageLength').val()"
+                        },
+                        "created": {
+                            ".validate": "newData.isString()"
+                        },
+                        "fannedOut": {
+                            ".validate": "newData.isBoolean()"
+                        }
+                    }
+                }
+            }
+        },
+        "users":{
+            "$userKey":{
+                ".write":"auth.uid===$userKey"
+            }
+        }
+    }
+}

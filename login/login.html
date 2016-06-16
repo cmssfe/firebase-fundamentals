@@ -1,0 +1,32 @@
+<h1 ng-hide="$ctrl.loggedIn" class="text-center">Please Login</h1>
+<h1 ng-show="$ctrl.loggedIn">You have already logged in</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 text-center">
+            <button ng-hide="$ctrl.loggedIn" class="btn btn-primary" ng-click="$ctrl.googlePlusLogin();">Google</button>
+        </div>
+        <div class="col-sm-6 col-xs-6 text-center">
+            <button ng-hide="$ctrl.loggedIn" class="btn btn-primary" ng-click="$ctrl.twitterLogin();">Twitter</button>
+        </div>
+
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 text-center">
+            <button ng-hide="$ctrl.loggedIn" class="btn btn-primary" ng-click="$ctrl.fbLogin();">Facebook</button>
+        </div>
+        <div class="col-sm-6 col-xs-6 text-center">
+            <button ng-hide="$ctrl.loggedIn" class="btn btn-primary" ng-click="$ctrl.githubLogin();">Github</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--<button ng-hide="$ctrl.loggedIn" class="btn btn-primary" ng-click="$ctrl.anonLogin();">Anonymous Login</button>-->
+<br>
+<br>
+<div class="alert alert-danger" ng-show="!!$ctrl.errorMessage">{{$ctrl.errorMessage}}</div>
