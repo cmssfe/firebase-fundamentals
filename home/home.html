@@ -4,9 +4,7 @@
             <h1>
                 <span>Tweeter</span>
                 <div id="user-select" style="float: right;">
-                    <div class="input-group">
-                        <select class="form-control" class="users" ng-model="$ctrl.currentUser" ng-options="user.name as user for user in $ctrl.users"></select>
-                    </div>
+                    <p>{{$ctrl.currentUserName}}</p>
                 </div>
             </h1>
         </div>
@@ -21,19 +19,20 @@
     <div class="col-xs-12">
         <div id="user-tweet-box" class="jumbotron">
             <h3>
-                {{$ctrl.user.name}} <small style="float:right;">Tweet Count: {{$ctrl.user.tweetCount}}</small></h3>
+                {{$ctrl.user.name}} <small style="float:right;">Tweet Count: {{$ctrl.tweetCount}}</small></h3>
             <form>
                 <div class="form-group">
-                    <textarea id="tweet-box" class="form-control" placeholder="Tweet as {{$ctrl.user.name}}"></textarea>
+                    <textarea ng-model="$ctrl.tweetText" ng-keyup="$ctrl.tweetTextKeyup($event)" id="tweet-box" class="form-control" placeholder="Tweet as {{$ctrl.user.name}}"></textarea>
                 </div>
                 <div class="form-group">
-                    <button id="tweet-button" class="btn btn-primary" disabled="disabled">Tweet</button>
+                    <button id="tweet-button" ng-click="$ctrl.addTweet()" class="btn btn-primary" disabled="disabled">Tweet</button>
                     <span id="tweet-length" style="margin-left: 1rem; color: gray;">140</span>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div id="user-timeline" style="padding: 2rem 0;">

@@ -3,7 +3,7 @@ angular.module('app').component('login', {
     bindings: {
         currentAuth: '='
     },
-    controller:function ($scope,firebaseRef,$location) {
+    controller: function ($scope, firebaseRef, $location) {
 
         var ctrl = this;
 
@@ -11,14 +11,14 @@ angular.module('app').component('login', {
 
 
         ctrl.googlePlusLogin = function () {
-           
+
             firebaseRef.getRootRef().authWithOAuthPopup('google', function (error, authData) {
                 if (error) {
                     console.warn("Authentication error", error);
                     ctrl.errorMessage = error.code;
                 } else {
-                     $location.path('/home');
-                     $scope.$apply();
+                    $location.path('/home');
+                    $scope.$apply();
                 }
             });
         };
@@ -30,7 +30,6 @@ angular.module('app').component('login', {
                     console.warn("Authentication error", error);
                     ctrl.errorMessage = error.code;
                 } else {
-                    debugger;
                     $location.path('/square');
                     $scope.$apply();
                 }
@@ -55,6 +54,20 @@ angular.module('app').component('login', {
                     console.warn("Authentication error", error);
                     ctrl.errorMessage = error.code;
                 } else {
+                    var auth = authData[authData.provider];
+                    firebaseRef.getUsersRef().child(authData.uid).once('value', function (snapshot) {
+                        if (!snapshot.exists()){
+                            firebaseRef.getUsersRef().child(authData.uid).set({
+                                displayName: auth.displayName,
+                                email: auth.email,
+                                username: auth.username,
+                                tweetCount: 0
+                            });
+                        }
+                    });
+
+
+
                     $location.path('/home');
                     $scope.$apply();
                 }

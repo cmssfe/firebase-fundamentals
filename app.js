@@ -21,11 +21,29 @@ app.config(function ($routeProvider) {
                     return deferred.promise;
 
                 },
-                tweets: function ($q,firebaseRef) {
+                tweets: function ($q, firebaseRef) {
                     var deferred = $q.defer();
-                    firebaseRef.getTweetsRef().orderByKey().on('value', function (snap) {
-                        deferred.resolve(snap.val());
+                    var allTweets=[];
+                    firebaseRef.getUsersRef().on('value', function (snap) {
+                        snap.forEach(function (childSnap) {
+                            var userKey=childSnap.key();
+                          
+                            firebaseRef.getTweetsRef().child(userKey).orderByChild("created").on('value', function (snap) {
+                                
+                                var tweets=snap.val();
+                                for(var key in tweets){
+        
+                                    allTweets.push(tweets[key]);
+                                }
+                                
+                                
+                            });
+                        });
+         
+                        deferred.resolve(allTweets);
                     });
+
+
                     return deferred.promise;
                 }
             }
@@ -41,7 +59,21 @@ app.config(function ($routeProvider) {
             }
         })
         .when('/home', {
-            template: "<home></home>"
+            template: "<home current-auth='$resolve.currentAuth'></home>",
+            resolve: {
+                currentAuth: function (firebaseRef,$location,$q) {
+                    var deferred = $q.defer();
+                    var result=firebaseRef.getRootRef().getAuth();
+                    debugger;
+                    if(result){
+                        deferred.resolve(result);
+                        
+                    }else{
+                        $location.path('/login');
+                    }
+                    return deferred.promise; 
+                }
+            }
         })
         .when('/login', {
             template: '<login current-auth="$resolve.currentAuth"></login>',
