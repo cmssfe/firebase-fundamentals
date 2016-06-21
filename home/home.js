@@ -15,7 +15,6 @@ angular.module('app').component('home', {
         //获取tweetCount
         firebaseRef.getUsersRef().child(userKey).child("tweetCount").on('value',function(snapshot){
             ctrl.tweetCount=snapshot.val();
-            $scope.$apply();
         });
 
         ctrl.tweetTextKeyup = function (e) {
@@ -36,6 +35,17 @@ angular.module('app').component('home', {
                 tweetButton.attr('disabled', 'disabled');
             }
         }
+        //获取关注当前用户的用户列表
+        ctrl.followedUsers=[];
+        firebaseRef.getFollowingRef().child(userKey).on('value',function(snapshot){
+            var following=snapshot.val();
+           
+            for(var userId in following){
+                firebaseRef.getUsersRef().child(userId).once('value',function(snap){
+                    ctrl.followedUsers.push(snap.val());
+                });
+            }
+        });
         //添加tweet
         ctrl.addTweet = function () {
             var tweet = {

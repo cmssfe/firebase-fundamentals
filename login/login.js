@@ -17,6 +17,22 @@ angular.module('app').component('login', {
                     console.warn("Authentication error", error);
                     ctrl.errorMessage = error.code;
                 } else {
+              
+                    var auth = authData[authData.provider];
+                    firebaseRef.getUsersRef().child(authData.uid).once('value', function (snapshot) {
+                     
+                        if (!snapshot.exists()) {
+                   
+                            firebaseRef.getUsersRef().child(authData.uid).set({
+                                displayName: auth.displayName,
+                                username: auth.displayName,
+                                tweetCount: 0
+                            });
+                        }
+                        $location.path('/home');
+                        $scope.$apply();
+                    });
+
                     $location.path('/home');
                     $scope.$apply();
                 }
@@ -30,6 +46,19 @@ angular.module('app').component('login', {
                     console.warn("Authentication error", error);
                     ctrl.errorMessage = error.code;
                 } else {
+                    var auth = authData[authData.provider];
+                    firebaseRef.getUsersRef().child(authData.uid).once('value', function (snapshot) {
+                     
+                        if (!snapshot.exists()) {
+                            firebaseRef.getUsersRef().child(authData.uid).set({
+                                displayName: auth.displayName,
+                                username: auth.displayName,
+                                tweetCount: 0
+                            });
+                        }
+                        $location.path('/home');
+                        $scope.$apply();
+                    });
                     $location.path('/square');
                     $scope.$apply();
                 }
@@ -42,8 +71,21 @@ angular.module('app').component('login', {
                     console.warn("Authentication error", error);
                     ctrl.errorMessage = error.code;
                 } else {
-                    $location.path('/home');
-                    $scope.$apply();
+             
+                    var auth = authData[authData.provider];
+                    firebaseRef.getUsersRef().child(authData.uid).once('value', function (snapshot) {
+                     
+                        if (!snapshot.exists()) {
+                            firebaseRef.getUsersRef().child(authData.uid).set({
+                                displayName: auth.displayName,
+                                username: auth.displayName,
+                                tweetCount: 0
+                            });
+                        }
+                        $location.path('/home');
+                        $scope.$apply();
+                    });
+
                 }
             })
         };
@@ -56,7 +98,7 @@ angular.module('app').component('login', {
                 } else {
                     var auth = authData[authData.provider];
                     firebaseRef.getUsersRef().child(authData.uid).once('value', function (snapshot) {
-                        if (!snapshot.exists()){
+                        if (!snapshot.exists()) {
                             firebaseRef.getUsersRef().child(authData.uid).set({
                                 displayName: auth.displayName,
                                 email: auth.email,

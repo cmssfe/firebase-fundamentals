@@ -60,9 +60,9 @@
             <h3>Following</h3>
             <ul class="list-group">
           
-                    <li class="list-group-item" ng-repeat="following in $ctrl.following">
+                    <li class="list-group-item" ng-repeat="following in $ctrl.followedUsers">
                         <h4 class="list-group-item-heading">
-                            {{following.name}} <small>@ {{following.username}}</small></h4>
+                            {{following.displayName}} <small>@ {{following.username}}</small></h4>
                     </li>
             </ul>
         </div>

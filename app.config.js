@@ -15,6 +15,9 @@ angular.module('app').factory('firebaseRef', function () {
         },
         getUserObjectsRef:function(){
             return ref.child("userObjects");
+        },
+        getFollowingRef:function(){
+            return ref.child("userObjects").child("following");
         }
     }
 });
